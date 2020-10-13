@@ -29,7 +29,7 @@ function performAction(e){
 
 //async GET
 const getWeather = async (baseURL, zip, apiKey) => {
-   const res = await fetch(baseURL+zip+',us'+'&APPID='+apiKey)
+   const res = await fetch(baseURL+zip+'&APPID='+apiKey)
    
    try{
        const data = await res.json();
@@ -61,7 +61,7 @@ const postWeather = async (url = '', data={}) => {
 
 //UI 
 const updateUI = async () => {
-    const req = await fetch('/all');
+    const req = await fetch('http://localhost:8000/all');
     try{
         const allData = await req.json();
         document.getElementById('date').innerHTML = allData.date;
