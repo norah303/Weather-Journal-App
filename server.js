@@ -15,38 +15,38 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
-const { request } = require('http');
-const { response } = require('express');
 app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('website'));
 
-
-// set variable to port 8000
-const port = 8000;
 // Setup Server
-//2 Utilize the .listen() method Set your variable named server
-const server = app.listen(port, () => {console.log(`running on localhost: ${port}`);});
-
-//GET route//
-app.get('/all', sendData)
-
-const sendData = (req, res) =>{
-    res.send(projectData);
-};
+const port = 8000;
+const server = app.listen(port, () => {
+    console.log(`running on localhost: ${port}`);
+});
 
 //POST route//
-// const data = [];
+const data = [];
 
-app.post()
-app.post('/addData', addData);
 
 function addData(req, res){
     projectData.temperature= req.body.temperature;
     projectData.date= req.body.date;
     projectData.content= req.body.content;
-    res.end();
+    res.end(projectData);
     // data.push(newEntry)
     console.log(projectData)
 }
+
+app.post('/add', addData);
+
+//GET route//
+
+
+const getData = (req, res) =>{
+    res.send(projectData);
+};
+
+app.get('/all', getData);
+
