@@ -22,21 +22,23 @@ app.use(express.static('website'));
 
 // Setup Server
 const port = 8000;
-const server = app.listen(port, () => {
+
+const listening = () => {
     console.log(`running on localhost: ${port}`);
-});
+};
+
+const server = app.listen(port, listening);
 
 //POST route//
 const data = [];
 
-
 function addData(req, res){
-    projectData.temperature= req.body.temperature;
     projectData.date= req.body.date;
+    projectData.temp= req.body.temp;
     projectData.content= req.body.content;
-    res.end(projectData);
-    // data.push(newEntry)
-    console.log(projectData)
+    res.send(projectData);
+
+    console.log("post ",projectData)
 }
 
 app.post('/add', addData);
